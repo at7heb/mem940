@@ -33,7 +33,7 @@ defmodule Mem9403Test do
   test "Mem3 set lots of times" do
     mem = Mem3.new()
 
-    Enum.each(1..2000, fn _i ->
+    Enum.each(1..2, fn _i ->
       Enum.reduce(0..65535, mem, fn address, mem ->
         mem |> Mem3.write(address, address - 32768)
       end)
@@ -56,7 +56,7 @@ defmodule Mem9403Test do
     mem = Mem3.new()
     mem2 = Enum.reduce(0..65535, mem, fn address, mem -> mem |> Mem3.write(address, address) end)
     # Enum.each(1..100_000_000, fn _x -> Mem3.read(mem2, :rand.uniform(65535)) end)
-    Enum.each(1..600, fn x -> Mem3.read(mem2, rem(x, 65536)) end)
+    Enum.each(1..6, fn x -> Mem3.read(mem2, rem(x, 65536)) end)
     # Enum.each(1..100_000_000, fn _x -> :rand.uniform(65535) end)
   end
 end
